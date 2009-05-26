@@ -207,10 +207,7 @@ class yterms {
 		$terms = array();
 		
 		if ( !$force && get_post_meta($post->ID, '_yterms', true) ) {
-			$_terms = wp_get_object_terms($post->ID, 'yterm');
-			
-			foreach ( $_terms as $term )
-				$terms[] = $term->name;
+			return wp_get_object_terms($post->ID, 'yterm');
 		}
 		
 		# work around concurrent calls
@@ -229,7 +226,7 @@ class yterms {
 			wp_set_object_terms($post->ID, $terms, 'yterm');
 		}
 		
-		return $terms;
+		return wp_get_object_terms($post->ID, 'yterm');
 	} # get()
 	
 	
