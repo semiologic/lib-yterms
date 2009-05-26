@@ -201,7 +201,7 @@ class yterms {
 			$post = get_post($post);
 		}
 		
-		if ( !$post || !in_array($post->post_type, array('post', 'page')) )
+		if ( !$post || !in_array($post->post_type, array('post', 'page')) || !extension_loaded('simplexml') )
 			return array();
 		
 		$terms = array();
