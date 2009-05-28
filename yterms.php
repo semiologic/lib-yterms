@@ -185,11 +185,10 @@ class yterms {
 	 * get()
 	 *
 	 * @param mixed $post
-	 * @param bool $force
 	 * @return array $terms
 	 **/
 
-	function get($post = null, $force = false) {
+	function get($post = null) {
 		if ( is_null($post) ) {
 			if ( in_the_loop() ) {
 				$post = get_post(get_the_ID());
@@ -206,7 +205,7 @@ class yterms {
 		
 		$terms = array();
 		
-		if ( !$force && get_post_meta($post->ID, '_yterms', true) ) {
+		if ( get_post_meta($post->ID, '_yterms', true) ) {
 			return wp_get_object_terms($post->ID, 'yterm');
 		}
 		
