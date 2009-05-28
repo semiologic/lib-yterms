@@ -213,7 +213,7 @@ class yterms {
 		# work around concurrent calls
 		update_post_meta($post->ID, '_yterms', '1');
 		
-		$res = yterms::query($post->post_title . "\n\n" . apply_filters('the_content', $post->content));
+		$res = yterms::query($post->post_title . "\n\n" . apply_filters('the_content', $post->post_content));
 		
 		if ( $res === false )
 			return array();
