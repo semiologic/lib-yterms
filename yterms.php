@@ -28,6 +28,9 @@ register_taxonomy('yterm', array('post', 'page'), array(
 	'label' => false,
 	));
 
+if ( !get_option('yterms_activated') )
+	yterms::activate();
+
 class yterms {
 	/**
 	 * activate()
@@ -36,6 +39,9 @@ class yterms {
 	 **/
 
 	function activate() {
+		if ( get_option('yterms_activated') )
+			return;
+		
 		if ( !function_exists('dbDelta') ) {
 			include ABSPATH . 'wp-admin/includes/upgrade.php';
 		}
@@ -76,6 +82,8 @@ class yterms {
 			id			char(32) PRIMARY KEY,
 			response	text NOT NULL DEFAULT ''
 		) $charset_collate;");
+		
+		update_option('yterms_activated', 1);
 	} # activate()
 	
 	
