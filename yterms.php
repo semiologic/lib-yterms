@@ -11,26 +11,6 @@
  * @package Yahoo Terms
  **/
 
-global $wpdb;
-if ( defined('YTERMS') ) {
-	$wpdb->yterms = YTERMS;
-} else {
-	$wpdb->yterms = 'yterms'; // share this across blogs by default
-}
-
-if ( !defined('yterms_appid') )
-	define('yterms_appid', 'pgERC.fV34E3W8zXcUnhXhJqoZp1k6_II7xd6IoawQiuvPYXuLpDhy_nX_dg7.ydCOo-');
-
-register_taxonomy('yterm', array('post', 'page'), array(
-	'update_count_callback' => array('yterms', 'update_taxonomy_count'),
-	'rewrite' => false,
-	'query_var' => false,
-	'label' => false,
-	));
-
-if ( !get_option('yterms_activated') )
-	yterms::activate();
-
 class yterms {
 	/**
 	 * activate()
@@ -253,4 +233,24 @@ class yterms {
 		}
 	} # update_taxonomy_count()
 } # yterms
+
+global $wpdb;
+if ( defined('YTERMS') ) {
+	$wpdb->yterms = YTERMS;
+} else {
+	$wpdb->yterms = 'yterms'; // share this across blogs by default
+}
+
+if ( !defined('yterms_appid') )
+	define('yterms_appid', 'pgERC.fV34E3W8zXcUnhXhJqoZp1k6_II7xd6IoawQiuvPYXuLpDhy_nX_dg7.ydCOo-');
+
+register_taxonomy('yterm', array('post', 'page'), array(
+	'update_count_callback' => array('yterms', 'update_taxonomy_count'),
+	'rewrite' => false,
+	'query_var' => false,
+	'label' => false,
+	));
+
+if ( !get_option('yterms_activated') )
+	yterms::activate();
 ?>
