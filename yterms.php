@@ -105,7 +105,7 @@ class yterms {
 			array('body' => $request)
 			);
 		
-		if ( is_wp_error($res) || $res['response']['code'] !== 200 )
+		if ( is_wp_error($res) || $res['response']['code'] != 200 )
 			return false;
 		
 		$xml = $res['body'];
