@@ -2,7 +2,7 @@
 /*
  * Yahoo Terms
  * Author: Denis de Bernardy <http://www.mesoconcepts.com>
- * Version: 1.0
+ * Version: 1.0.1 beta
  */
 
 /**
@@ -135,7 +135,7 @@ class yterms {
 		$response = $wpdb->get_var("
 			SELECT	response
 			FROM	$wpdb->yterms
-			WHERE	id = '" . $wpdb->escape($cache_id) . "'
+			WHERE	id = '" . $wpdb->_real_escape($cache_id) . "'
 			");
 		
 		if ( !$response )
@@ -162,8 +162,8 @@ class yterms {
 				response
 				)
 			VALUES (
-				'" . $wpdb->escape($cache_id) . "',
-				'" . $wpdb->escape($xml) . "'
+				'" . $wpdb->_real_escape($cache_id) . "',
+				'" . $wpdb->_real_escape($xml) . "'
 				);
 			");
 	} # set_cache()
