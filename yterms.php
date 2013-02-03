@@ -2,7 +2,7 @@
 /*
  * Yahoo Terms
  * Author: Denis de Bernardy <http://www.mesoconcepts.com>
- * Version: 1.0.1
+ * Version: 1.0.2
  */
 
 /**
@@ -18,7 +18,7 @@ class yterms {
 	 * @return void
 	 **/
 
-	function activate() {
+	static function activate() {
 		if ( get_option('yterms_activated') )
 			return;
 		
@@ -176,7 +176,7 @@ class yterms {
 	 * @return array $terms
 	 **/
 
-	function get($post = null) {
+	static function get($post = null) {
 		if ( is_null($post) ) {
 			if ( in_the_loop() ) {
 				$post = get_post(get_the_ID());
